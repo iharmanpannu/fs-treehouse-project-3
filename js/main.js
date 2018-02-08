@@ -2,10 +2,10 @@ const form = document.querySelector("form");
 const name = document.querySelector("#name");
 
 window.addEventListener("load", () => {
-  loadPage();
+  focusNameInput();
 });
 
 // This function adds focus when page loads
-function loadPage() {
+function focusNameInput() {
   name.focus();
 }
