@@ -37,5 +37,26 @@ function showAvailableColors(e) {
   // if theme js pune selected then show "cornflower blue, Dark slate grey, and gold "
   // if theme I JS selected show Tomoto, steel blue and dim grey
   // if (e.target.value === 'js pune')
+  if (e.target.value === "js puns") {
+    colorOptions.forEach((color, i) => {
+      if (i === 0) {
+        color.style.display = "block";
+      } else if (i === 1) {
+        color.style.display = "block";
+      } else if (i === 2) {
+        color.style.display = "block";
+      }
+    });
+  } else if (e.target.value === "heart js") {
+    colorOptions.forEach((color, i) => {
+      if (i === 3) {
+        color.style.display = "block";
+      } else if (i === 4) {
+        color.style.display = "block";
+      } else if (i === 5) {
+        color.style.display = "block";
+      }
+    });
+  }
 }
 designSelectMenu.onchange = showAvailableColors;
