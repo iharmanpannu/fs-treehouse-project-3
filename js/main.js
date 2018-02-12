@@ -1,8 +1,8 @@
 const form = document.querySelector("form");
 const name = document.querySelector("#name");
-const JobRole = document.querySelector("select");
+const JobRoles = document.querySelector("select");
 const firstFieldSet = document.querySelectorAll("fieldset")[0];
-const InputOther = document.querySelector("input#other");
+const InputOther = document.querySelector("#other-title");
 InputOther.style.display = "none";
 // const optionOtherJob = document.querySelectorAll("option");
 // const inputOption = document.getElementById("other-title");
@@ -17,18 +17,14 @@ function focusNameInput() {
   name.focus();
 }
 
-// function appendInputOtherJob(event) {
-//   const otherJobInput = document.createElement("input");
-//   otherJobInput.setAttribute("type", "text");
-//   otherJobInput.id = "other-title";
-//   otherJobInput.setAttribute("placeholder", "Your Job Role");
-//   otherJobInput.style.display = "none";
-//   firstFieldSet.appendChild(otherJobInput);
-
-// }
-function ChangedToOther(event) {
-  //if the job role event was changed to other a nice text menu is created
-  if (event.target.value == "other") InputOther.style.display = "block";
-  else InputOther.style.display = "none";
+// Other Job selected function
+function onOtherJobSelected(e) {
+  // if in job Selection select menu option other job is onOtherJobSelected
+  // then display then text box else display nothing
+  e.target.value === "other"
+    ? (InputOther.style.display = "block")
+    : (InputOther.style.display = "none");
+  // focus the text field
+  InputOther.focus();
 }
-JobRole.onchange = ChangedToOther;
+JobRoles.onchange = onOtherJobSelected;
