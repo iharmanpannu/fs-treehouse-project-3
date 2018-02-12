@@ -1,8 +1,13 @@
 const form = document.querySelector("form");
 const name = document.querySelector("#name");
+const JobRole = document.querySelector("select");
 const firstFieldSet = document.querySelectorAll("fieldset")[0];
-const inputOption = document.getElementById("other-title");
-// inputOption.selected;
+const InputOther = document.querySelector("input#other");
+InputOther.style.display = "none";
+// const optionOtherJob = document.querySelectorAll("option");
+// const inputOption = document.getElementById("other-title");
+// inputOption.style.display = "none";
+
 window.addEventListener("load", () => {
   focusNameInput();
 });
@@ -21,11 +26,9 @@ function focusNameInput() {
 //   firstFieldSet.appendChild(otherJobInput);
 
 // }
-
-function ChangedToOther() {
-  // if the job role event was changed to other a nice text menu is created
-  if (this.value === "option") {
-  }
+function ChangedToOther(event) {
+  //if the job role event was changed to other a nice text menu is created
+  if (event.target.value == "other") InputOther.style.display = "block";
+  else InputOther.style.display = "none";
 }
-
-ChangedToOther();
+JobRole.onchange = ChangedToOther;
