@@ -1,7 +1,6 @@
 const form = document.querySelector("form");
 const name = document.querySelector("#name");
 const firstFieldSet = document.querySelectorAll("fieldset")[0];
-const otherJob = document.getElementById("title");
 
 window.addEventListener("load", () => {
   focusNameInput();
@@ -17,20 +16,8 @@ function appendInputOtherJob() {
   otherJobInput.setAttribute("type", "text");
   otherJobInput.id = "other-title";
   otherJobInput.setAttribute("placeholder", "Your Job Role");
+  otherJobInput.style.display = "none";
   firstFieldSet.appendChild(otherJobInput);
 }
 
-function otherJobTextField(nameSelect) {
-  if (nameSelect) {
-    const jobOptionVal = document.getElementById("other-job").value;
-    if (jobOptionVal === nameSelect.value) {
-      appendInputOtherJob();
-    }
-  } else {
-    console.log("====================================");
-    console.log("Hello");
-    console.log("====================================");
-  }
-}
-
-otherJobTextField();
+appendInputOtherJob();
