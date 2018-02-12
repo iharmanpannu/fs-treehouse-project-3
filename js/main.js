@@ -40,12 +40,11 @@ function hideColor() {
 designSelectMenu.onchange = showAvailableColors;
 function showAvailableColors(e) {
   // if theme js pune selected then show "cornflower blue, Dark slate grey, and gold "
-  // if theme I JS selected show Tomoto, steel blue and dim grey
-
   if (e.target.value === "js puns") {
     colorOptions.forEach(
       (color, i) => (color.style.display = i >= 0 && i < 3 ? "block" : "none")
     );
+    // if theme I JS selected show Tomoto, steel blue and dim grey
   } else if (e.target.value === "heart js") {
     colorOptions.forEach(
       (color, i) => (color.style.display = i <= 2 ? "none" : "block")
