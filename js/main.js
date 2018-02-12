@@ -8,6 +8,7 @@ const colorOptions = document.querySelectorAll("#color option");
 
 window.addEventListener("load", () => {
   focusNameInput();
+  hideColor();
 });
 
 // This function adds focus when page loads
@@ -30,33 +31,24 @@ JobRoles.onchange = onOtherJobSelected;
 
 //change colors as the user selects the menu
 // Hide all the options
-for (let i = 0; i < colorOptions.length; i++) {
-  colorOptions[i].style.display = "none";
+function hideColor() {
+  for (let i = 0; i < colorOptions.length; i++) {
+    colorOptions[i].style.display = "none";
+  }
 }
+
+designSelectMenu.onchange = showAvailableColors;
 function showAvailableColors(e) {
   // if theme js pune selected then show "cornflower blue, Dark slate grey, and gold "
   // if theme I JS selected show Tomoto, steel blue and dim grey
-  // if (e.target.value === 'js pune')
+
   if (e.target.value === "js puns") {
-    colorOptions.forEach((color, i) => {
-      if (i === 0) {
-        color.style.display = "block";
-      } else if (i === 1) {
-        color.style.display = "block";
-      } else if (i === 2) {
-        color.style.display = "block";
-      }
-    });
+    colorOptions.forEach(
+      (color, i) => (color.style.display = i >= 0 && i < 3 ? "block" : "none")
+    );
   } else if (e.target.value === "heart js") {
-    colorOptions.forEach((color, i) => {
-      if (i === 3) {
-        color.style.display = "block";
-      } else if (i === 4) {
-        color.style.display = "block";
-      } else if (i === 5) {
-        color.style.display = "block";
-      }
-    });
+    colorOptions.forEach(
+      (color, i) => (color.style.display = i <= 2 ? "none" : "block")
+    );
   }
 }
-designSelectMenu.onchange = showAvailableColors;
