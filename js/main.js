@@ -1,12 +1,9 @@
 const form = document.querySelector("form");
 const name = document.querySelector("#name");
 const firstFieldSet = document.querySelectorAll("fieldset")[0];
-const inputOption = document.querySelector("#other-title");
-// inputOption.style.display = "none";
 
 window.addEventListener("load", () => {
   focusNameInput();
-  ChangedToOther();
 });
 
 // This function adds focus when page loads
@@ -25,8 +22,13 @@ function focusNameInput() {
 // }
 
 function ChangedToOther(event) {
+  const inputOption = document.getElementById("other-title");
+  inputOption.style.display = "none";
+
   //if the job role event was changed to other a nice text menu is created
   event.target.value == "other"
     ? (inputOption.style.display = "block")
     : (inputOption.style.display = "none");
 }
+
+ChangedToOther();
