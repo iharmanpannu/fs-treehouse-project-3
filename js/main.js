@@ -83,24 +83,37 @@ function showAvailableColors(e) {
 const activities = document.querySelector(".activities");
 const checkBoxes = document.querySelectorAll("input[type=checkbox]");
 console.log(checkBoxes);
+const totalInput = document.createElement("input");
+totalInput.value = 0;
+function valueOnly() {
+  // if user selects checkbox[o] totalInput = $200
+  // if user selects checkbox[1] totalInput = $100
+  // if user selects checkbox[2] totalInput = $100
+  // if user selects checkbox[3] totalInput = $100
+  // if user selects checkbox[3] totalInput = $100
+  // if user selects checkbox[3] totalInput = $100
+  // if user selects checkbox[3] totalInput = $100
+  for (let i = 0; i < checkBoxes.length; i++) {
+    checkBoxes[0].onchange = () =>
+      console.log("====================================");
+    console.log("200");
+    console.log("====================================");
+  }
+}
 
 function appendTotal() {
   const totalLabel = document.createElement("label");
-  const totalInput = document.createElement("input");
-  totalLabel.textContent = `Total: ${totalInput.value}`;
-
+  // totalInput.value = "Hello";
+  const valueOnly = (totalLabel.textContent = `Total: $${totalInput.value}`);
   activities.appendChild(totalLabel);
+}
+for (let i = 0; i < checkBoxes.length; i++) {
+  console.log(checkBoxes[i]);
+  checkBoxes[i].onchange = () => valueOnly();
 }
 
 function activity() {
   appendTotal();
-  for (let i = 0; i < checkBoxes.length; i++) {
-    console.log(checkBoxes[i]);
-    checkBoxes[0].onchange = () =>
-      checkBoxes[1]
-        ? checkBoxes[1].setAttribute("disabled", true)
-        : checkBoxes[1].setAttribute("disabled", false);
-  }
 }
 
 activity();
