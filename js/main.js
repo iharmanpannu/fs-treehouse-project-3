@@ -83,25 +83,28 @@ function showAvailableColors(e) {
 const activities = document.querySelector(".activities");
 const checkBoxes = document.querySelectorAll("input[type=checkbox]");
 const total = document.createElement("span");
-total.innerHTML = `Total ${prices()} `;
 activities.appendChild(total);
-const names = new Array();
-names["all"] = 200;
-names["js-frameworks"] = 100;
-names["js-libs"] = 100;
-names["express"] = 100;
-names["node"] = 100;
-names["build-tools"] = 100;
-names["npm"] = 100;
-
+let price = 0;
 //get the price
-function prices() {
-  let price = 0;
+function Price(first) {
   for (let i = 0; i < checkBoxes.length; i++) {
-    if (checkBoxes[i].checkBoxes) {
-      price = names[checkBoxes[i].value];
+    if (first.checked) {
+      if (first == checkBoxes[0])
+        //the only one that cost diffrent is the main confrence so this if statements checks if it is the main and adds 200 if it is
+        price = price + 200; // if it isent it must cost 100 so that is the other option
+      else price = price + 100;
+    } else {
+      if (first == checkBoxes[0])
+        //does the reverse if it is unchecked and - 100 or 200 same if statements...
+        price = price - 200;
+      else price = price - 100;
     }
-    break;
+    //changes the text so its visible
+    total.innerHTML = `Total $${price} `;
+    if (price == 0) {
+      total.innerHTML = "";
+    }
+    //if the price is 0 wich means that no of the events is selected and therefor the price span is not visible
   }
 }
 // Event selection function
@@ -118,7 +121,7 @@ function activity() {
     //On load uncheck all boxes
     checkBoxes[i].checked = false;
     // if user selects checkbox[1] totalInput = $100 && disable checkbox[3]
-    checkBoxes[0].addEventListener("click", e => (total.innerHTML = prices()));
+    checkBoxes[0].addEventListener("click", e => Price());
     checkBoxes[1].addEventListener("click", e => {
       disableBoxes(checkBoxes[1], checkBoxes[5], checkBoxes[3]);
       total.innerHTML = prices();
@@ -138,6 +141,7 @@ function activity() {
     checkBoxes[6].addEventListener("click", e =>
       disableBoxes(checkBoxes[6], checkBoxes[4], checkBoxes[2])
     );
+    Price(checkBoxes[0]);
   }
 }
 
