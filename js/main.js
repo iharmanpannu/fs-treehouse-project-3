@@ -83,13 +83,19 @@ function showAvailableColors(e) {
 const activities = document.querySelector(".activities");
 const checkBoxes = document.querySelectorAll("input[type=checkbox]");
 const total = document.createElement("span");
-let price;
-total.innerHTML = `Total: ${price}`;
+let price = 0;
+total.innerHTML = `Total: $${price}`;
 activities.appendChild(total);
 
 //get the price
 
-function getTotal(add, subtract) {}
+function getTotal(add, subtract) {
+  for (let i = 0; i < checkBoxes.length; i++) {
+    checkBoxes[i].addEventListener("click", () => {
+      price = 100;
+    });
+  }
+}
 // Event selection function
 function activity() {
   // if user selects checkbox[o] totalInput = $200
@@ -104,17 +110,10 @@ function activity() {
     //On load uncheck all boxes
     checkBoxes[i].checked = false;
     // if user selects checkbox[1] totalInput = $100 && disable checkbox[3]
-    checkBoxes[0].addEventListener(
-      "click",
-      e => (total.innerHTML = `Total: $200`)
-    );
+    checkBoxes[0].addEventListener("click", e => getTotal());
     checkBoxes[1].addEventListener("click", e => {
+      getTotal();
       disableBoxes(checkBoxes[1], checkBoxes[5], checkBoxes[3]);
-      if (checkBoxes[0].checked) {
-        total.innerHTML = `Total: $300`;
-      } else {
-        total.innerHTML = `Total: $100`;
-      }
     });
     checkBoxes[2].addEventListener("click", e =>
       disableBoxes(checkBoxes[2], checkBoxes[3], checkBoxes[4])
