@@ -71,14 +71,19 @@ const activities = document.querySelector(".activities");
 const checkBoxes = document.querySelectorAll("input[type=checkbox]");
 
 function getTotal() {
+  const total = document.createElement("span");
+  activities.appendChild(total);
+  const amount ;
+  total.innerHTML = `Total: $${amount}`;
   for (let i = 0; i < checkBoxes.length; i++) {
-    checkBoxes[i].addEventListener("click", e => {
-      if (checkBoxes[i].checked) {
-        return 100;
-      } else {
-        return 0;
-      }
-    });
+    switch (checkBoxes[i].onchange) {
+      case (checkBoxes[1].checked):
+        amount + 100;
+        break;
+    
+      default:
+        break;
+    }
   }
 }
 
@@ -88,14 +93,7 @@ function addTotal() {
   const amount = getTotal();
   total.innerHTML = `Total: $${amount}`;
 }
-console.log(addTotal());
-// getTotal();
-// function ifChecked() {
-//   for (let i = 0; i < checkBoxes.length; i++) {
-//     checkBoxes.
-//   }
-// }
-// Event selection function
+
 function activity() {
   // if user selects checkbox[o] totalInput = $200
   // if user selects checkbox[1] totalInput = $100 && disable checkbox[3]
