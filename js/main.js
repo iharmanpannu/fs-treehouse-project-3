@@ -82,38 +82,82 @@ function showAvailableColors(e) {
 // Function to register for activites
 const activities = document.querySelector(".activities");
 const checkBoxes = document.querySelectorAll("input[type=checkbox]");
-console.log(checkBoxes);
-const totalInput = document.createElement("input");
-totalInput.value = 0;
-function valueOnly() {
-  // if user selects checkbox[o] totalInput = $200
-  // if user selects checkbox[1] totalInput = $100
-  // if user selects checkbox[2] totalInput = $100
-  // if user selects checkbox[3] totalInput = $100
-  // if user selects checkbox[3] totalInput = $100
-  // if user selects checkbox[3] totalInput = $100
-  // if user selects checkbox[3] totalInput = $100
+const total = document.createElement("span");
+total.innerHTML = `Total ${prices()} `;
+activities.appendChild(total);
+const names = new Array();
+names["all"] = 200;
+names["js-frameworks"] = 100;
+names["js-libs"] = 100;
+names["express"] = 100;
+names["node"] = 100;
+names["build-tools"] = 100;
+names["npm"] = 100;
+
+//get the price
+function prices() {
+  let price = 0;
   for (let i = 0; i < checkBoxes.length; i++) {
-    checkBoxes[0].onchange = () =>
-      console.log("====================================");
-    console.log("200");
-    console.log("====================================");
+    if (checkBoxes[i].checkBoxes) {
+      price = names[checkBoxes[i].value];
+    }
+    break;
+  }
+}
+// Event selection function
+function activity() {
+  // if user selects checkbox[o] totalInput = $200
+  // if user selects checkbox[1] totalInput = $100 && disable checkbox[3]
+  // if user selects checkbox[2] totalInput = $100 && disable checkbox[3] & checkbox[4]
+  // if user selects checkbox[3] totalInput = $100 && disable checkbox[1] & checkbox[5]
+  // if user selects checkbox[4] totalInput = $100 && disable checkbox[2] & checkbox[6]
+  // if user selects checkbox[5] totalInput = $100 && disable checkbox[3] & checkbox[1]
+  // if user selects checkbox[6] totalInput = $100 && disable checkbox[4] & checkbox[2]
+
+  for (let i = 0; i < checkBoxes.length; i++) {
+    //On load uncheck all boxes
+    checkBoxes[i].checked = false;
+    // if user selects checkbox[1] totalInput = $100 && disable checkbox[3]
+    checkBoxes[0].addEventListener("click", e => (total.innerHTML = prices()));
+    checkBoxes[1].addEventListener("click", e => {
+      disableBoxes(checkBoxes[1], checkBoxes[5], checkBoxes[3]);
+      total.innerHTML = prices();
+    });
+    checkBoxes[2].addEventListener("click", e =>
+      disableBoxes(checkBoxes[2], checkBoxes[3], checkBoxes[4])
+    );
+    checkBoxes[3].addEventListener("click", e =>
+      disableBoxes(checkBoxes[3], checkBoxes[1], checkBoxes[5])
+    );
+    checkBoxes[4].addEventListener("click", e =>
+      disableBoxes(checkBoxes[4], checkBoxes[2], checkBoxes[6])
+    );
+    checkBoxes[5].addEventListener("click", e =>
+      disableBoxes(checkBoxes[5], checkBoxes[3], checkBoxes[1])
+    );
+    checkBoxes[6].addEventListener("click", e =>
+      disableBoxes(checkBoxes[6], checkBoxes[4], checkBoxes[2])
+    );
   }
 }
 
-function appendTotal() {
-  const totalLabel = document.createElement("label");
-  // totalInput.value = "Hello";
-  const valueOnly = (totalLabel.textContent = `Total: $${totalInput.value}`);
-  activities.appendChild(totalLabel);
-}
-for (let i = 0; i < checkBoxes.length; i++) {
-  console.log(checkBoxes[i]);
-  checkBoxes[i].onchange = () => valueOnly();
-}
-
-function activity() {
-  appendTotal();
-}
-
 activity();
+
+function disableBoxes(first, middle, last) {
+  if (first.checked) {
+    //cheks if it is checked or uncheked
+    //this code strips runs when it is checked and makes the input diabled and the label grey
+    middle.disabled = true;
+    middle.parentNode.style.color = "grey";
+    middle.checked = false;
+    last.disabled = true;
+    last.parentNode.style.color = "grey";
+    last.checked = false;
+  } else {
+    //when its unchecked it makes the input not disabled and the label black
+    middle.disabled = false;
+    middle.parentNode.style.color = "black";
+    last.disabled = false;
+    last.parentNode.style.color = "black";
+  }
+}
