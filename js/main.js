@@ -51,3 +51,8 @@ function showAvailableColors(e) {
     );
   }
 }
+
+// Function to register for activites
+const allCheckBoxes = document.querySelector("input[name = 'js-frameworks']");
+
+const checkBox1 = this.form.elements["express"];
