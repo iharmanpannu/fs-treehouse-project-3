@@ -157,10 +157,9 @@ pricesList["express"] = 100;
 pricesList["node"] = 100;
 pricesList["build-tools"] = 100;
 pricesList["npm"] = 100;
-
+const activityCheckBoxes = document.querySelectorAll("input[type=checkbox]");
 function getActivityPrices(userInput) {
   // selected all checkBoxes
-  const activityCheckBoxes = document.querySelectorAll("input[type=checkbox]");
 
   // Loop through checkbox list
   for (let i = 0; i < activityCheckBoxes.length; i++) {
@@ -172,7 +171,24 @@ function getActivityPrices(userInput) {
 }
 
 function calculateTotal() {
-  let total = getActivityPrices();
+  let total = function() {
+    for (let i = 0; i < activityCheckBoxes.length; i++) {
+      if (activityCheckBoxes[0].checked) {
+        getActivityPrices();
+      } else if (activityCheckBoxes[i].checked > 1) {
+        getActivityPrices() + getActivityPrices();
+      } else if (activityCheckBoxes[i].checked > 2) {
+        getActivityPrices() + getActivityPrices() + getActivityPrices();
+      } else if (activityCheckBoxes[i].checked > 3) {
+        getActivityPrices() +
+          getActivityPrices() +
+          getActivityPrices() +
+          getActivityPrices();
+      } else {
+        getActivityPrices();
+      }
+    }
+  };
   printIt.innerHTML = `Your Total is $${total}`;
   printIt.style.display = "block";
 }
