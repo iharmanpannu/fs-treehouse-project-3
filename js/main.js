@@ -137,3 +137,5 @@ function disableBoxes(first, middle, last) {
     last.parentNode.style.color = "black";
   }
 }
+
+const pricesList = new Array();
