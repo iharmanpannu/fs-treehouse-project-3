@@ -29,6 +29,19 @@ function onOtherJobSelected(e) {
 }
 JobRoles.onchange = onOtherJobSelected;
 
+// function appendSelectOption() {
+//   const selectOption = document.createElement("option");
+//   selectOption.value = "Please Select";
+//   selectOption.text = "Select One Color";
+//   selectOption.setAttribute("disabled", true);
+//   color.insertBefore(selectOption, colorOptions[0]);
+//   reset();
+// }
+
+// function reset() {
+//   color.selectedIndex = 0;
+// }
+
 //change colors as the user selects the menu
 // Hide all the options
 function hideColor() {
@@ -69,15 +82,6 @@ function showAvailableColors(e) {
 // Function to register for activites
 const activities = document.querySelector(".activities");
 const checkBoxes = document.querySelectorAll("input[type=checkbox]");
-let amount = parseInt(0);
-const total = document.createElement("span");
-
-activities.appendChild(total);
-function getTotal() {
-  for (let i = 0; i < checkBoxes.length; i++) {
-    total.innerHTML = `Total $${amount}`;
-  }
-}
 
 function activity() {
   // if user selects checkbox[o] totalInput = $200
@@ -86,24 +90,33 @@ function activity() {
   // if user selects checkbox[3] totalInput = $100 && disable checkbox[1] & checkbox[5]
   // if user selects checkbox[4] totalInput = $100 && disable checkbox[2] & checkbox[6]
   // if user selects checkbox[5] totalInput = $100 && disable checkbox[3] & checkbox[1]
+  // if user selects checkbox[6] totalInput = $100 && disable checkbox[4] & checkbox[2]
 
-  checkBoxes[2].addEventListener("click", e =>
-    disableBoxes(checkBoxes[2], checkBoxes[3], checkBoxes[4])
-  );
-  checkBoxes[3].addEventListener("click", e =>
-    disableBoxes(checkBoxes[3], checkBoxes[1], checkBoxes[5])
-  );
-  checkBoxes[4].addEventListener("click", e =>
-    disableBoxes(checkBoxes[4], checkBoxes[2], checkBoxes[6])
-  );
-  checkBoxes[5].addEventListener("click", e =>
-    disableBoxes(checkBoxes[5], checkBoxes[3], checkBoxes[1])
-  );
-  checkBoxes[6].addEventListener("click", e =>
-    disableBoxes(checkBoxes[6], checkBoxes[4], checkBoxes[2])
-  );
+  for (let i = 0; i < checkBoxes.length; i++) {
+    //On load uncheck all boxes
+    checkBoxes[i].checked = false;
+    // if user selects checkbox[1] totalInput = $100 && disable checkbox[3]
+    checkBoxes[1].addEventListener("click", e =>
+      disableBoxes(checkBoxes[1], checkBoxes[5], checkBoxes[3])
+    );
+    checkBoxes[2].addEventListener("click", e =>
+      disableBoxes(checkBoxes[2], checkBoxes[3], checkBoxes[4])
+    );
+    checkBoxes[3].addEventListener("click", e =>
+      disableBoxes(checkBoxes[3], checkBoxes[1], checkBoxes[5])
+    );
+    checkBoxes[4].addEventListener("click", e =>
+      disableBoxes(checkBoxes[4], checkBoxes[2], checkBoxes[6])
+    );
+    checkBoxes[5].addEventListener("click", e =>
+      disableBoxes(checkBoxes[5], checkBoxes[3], checkBoxes[1])
+    );
+    checkBoxes[6].addEventListener("click", e =>
+      disableBoxes(checkBoxes[6], checkBoxes[4], checkBoxes[2])
+    );
+  }
 }
-// call activity
+
 activity();
 
 function disableBoxes(first, middle, last) {
