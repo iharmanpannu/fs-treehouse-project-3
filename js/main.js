@@ -163,10 +163,10 @@ function getActivityPrices(userInput) {
   // selected all checkBoxes
   let total = 0;
   // Loop through checkbox list
-  for (item in pricesList) {
-    activityCheckBoxes[i].name = pricesList[item];
-  }
   for (let i = 0; i < activityCheckBoxes.length; i++) {
+    for (item in pricesList) {
+      activityCheckBoxes[i].name = pricesList[item];
+    }
     if (activityCheckBoxes[i].checked) {
       userInput = parseInt(activityCheckBoxes[i].name);
       total = total + userInput;
