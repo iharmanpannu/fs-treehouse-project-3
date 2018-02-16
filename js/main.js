@@ -79,7 +79,6 @@ function getTotal() {
   }
 }
 
-getTotal();
 function activity() {
   // if user selects checkbox[o] totalInput = $200
   // if user selects checkbox[1] totalInput = $100 && disable checkbox[3]
@@ -87,9 +86,6 @@ function activity() {
   // if user selects checkbox[3] totalInput = $100 && disable checkbox[1] & checkbox[5]
   // if user selects checkbox[4] totalInput = $100 && disable checkbox[2] & checkbox[6]
   // if user selects checkbox[5] totalInput = $100 && disable checkbox[3] & checkbox[1]
-  // if user selects checkbox[6] totalInput = $100 && disable checkbox[4] & checkbox[2]
-
-  for (let i = 0; i < checkBoxes.length; i++) {}
 
   checkBoxes[2].addEventListener("click", e =>
     disableBoxes(checkBoxes[2], checkBoxes[3], checkBoxes[4])
