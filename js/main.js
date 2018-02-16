@@ -82,8 +82,6 @@ function showAvailableColors(e) {
 // Function to register for activites
 const activities = document.querySelector(".activities");
 const checkBoxes = document.querySelectorAll("input[type=checkbox]");
-let printIt = document.createElement("span");
-activities.appendChild(printIt);
 
 function activity() {
   // if user selects checkbox[o] totalInput = $200
@@ -98,9 +96,7 @@ function activity() {
     //On load uncheck all boxes
     checkBoxes[i].checked = false;
     // if user selects checkbox[1] totalInput = $100 && disable checkbox[3]
-    checkBoxes[0].addEventListener("click", e => {
-      // calculateTotal();
-    });
+    // checkBoxes[0].addEventListener("click", e => {});
     checkBoxes[1].addEventListener("click", e => {
       disableBoxes(checkBoxes[1], checkBoxes[5], checkBoxes[3]);
       // calculateTotal();
@@ -149,7 +145,8 @@ function disableBoxes(first, middle, last) {
   }
 }
 
-let pricesList = new Array();
+let pricesList = {};
+
 pricesList["all"] = 200;
 pricesList["js-frameworks"] = 100;
 pricesList["js-libs"] = 100;
@@ -157,44 +154,36 @@ pricesList["express"] = 100;
 pricesList["node"] = 100;
 pricesList["build-tools"] = 100;
 pricesList["npm"] = 100;
+
+const printTotal = document.getElementById("printTotal");
+// selected all checkBoxes
 const activityCheckBoxes = document.querySelectorAll("input[type=checkbox]");
+
 function getActivityPrices(userInput) {
   // selected all checkBoxes
-
+  let total = 0;
   // Loop through checkbox list
+  for (item in pricesList) {
+    activityCheckBoxes[i].name = pricesList[item];
+  }
   for (let i = 0; i < activityCheckBoxes.length; i++) {
     if (activityCheckBoxes[i].checked) {
-      userInput = activityCheckBoxes[i].name;
+      userInput = parseInt(activityCheckBoxes[i].name);
+      total = total + userInput;
     }
   }
-  return pricesList[userInput];
+  return total;
 }
 
 function calculateTotal() {
-  let total = function() {
-    for (let i = 0; i < activityCheckBoxes.length; i++) {
-      if (activityCheckBoxes[0].checked) {
-        getActivityPrices();
-      } else if (activityCheckBoxes[i].checked > 1) {
-        getActivityPrices() + getActivityPrices();
-      } else if (activityCheckBoxes[i].checked > 2) {
-        getActivityPrices() + getActivityPrices() + getActivityPrices();
-      } else if (activityCheckBoxes[i].checked > 3) {
-        getActivityPrices() +
-          getActivityPrices() +
-          getActivityPrices() +
-          getActivityPrices();
-      } else {
-        getActivityPrices();
-      }
-    }
-  };
-  printIt.innerHTML = `Your Total is $${total}`;
-  printIt.style.display = "block";
+  let total = getActivityPrices();
+  console.log(total);
+  printTotal.innerHTML = `Your Total is $${total}`;
+  printTotal.style.display = "block";
 }
 
-function hideTotal() {
-  printIt.innerHTML = `Your Total is $0`;
-  // printIt.style.display = "none";
+for (var i = 0; i < activityCheckBoxes.length; i++) {
+  activityCheckBoxes[i].addEventListener("change", function() {
+    calculateTotal();
+  });
 }
-activities.onchange = calculateTotal;
