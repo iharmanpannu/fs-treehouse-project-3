@@ -148,8 +148,16 @@ pricesList["build-tools"] = 100;
 pricesList["npm"] = 100;
 
 function getActivityPrices() {
+  // selected all checkBoxes
   const activityCheckBoxes = document.querySelectorAll("input[type=checkbox]");
   console.log(activityCheckBoxes);
+  // Loop through checkbox list
+  for (let i = 0; i < activityCheckBoxes.length; i++) {
+    if (activityCheckBoxes[i].checked) {
+      userInput = activityCheckBoxes[i].value;
+    }
+  }
+  return pricesList[userInput];
 }
 
 getActivityPrices();
