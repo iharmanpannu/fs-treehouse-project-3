@@ -138,4 +138,18 @@ function disableBoxes(first, middle, last) {
   }
 }
 
-const pricesList = new Array();
+let pricesList = new Array();
+pricesList["all"] = 200;
+pricesList["js-frameworks"] = 100;
+pricesList["js-libs"] = 100;
+pricesList["express"] = 100;
+pricesList["node"] = 100;
+pricesList["build-tools"] = 100;
+pricesList["npm"] = 100;
+
+function getActivityPrices() {
+  const activityCheckBoxes = document.querySelectorAll("input[type=checkbox]");
+  console.log(activityCheckBoxes);
+}
+
+getActivityPrices();
