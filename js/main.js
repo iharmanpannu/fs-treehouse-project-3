@@ -78,12 +78,7 @@ function getTotal() {
     total.innerHTML = `Total $${amount}`;
   }
 }
-// function addTotal() {
-//   const total = document.createElement("span");
-//   activities.appendChild(total);
-//   const amount = getTotal();
-//   total.innerHTML = `Total: $${amount}`;
-// }
+
 getTotal();
 function activity() {
   // if user selects checkbox[o] totalInput = $200
@@ -94,50 +89,25 @@ function activity() {
   // if user selects checkbox[5] totalInput = $100 && disable checkbox[3] & checkbox[1]
   // if user selects checkbox[6] totalInput = $100 && disable checkbox[4] & checkbox[2]
 
-  for (let i = 0; i < checkBoxes.length; i++) {
-    //On load uncheck all boxes
-    checkBoxes[i].checked = false;
-    // if user selects checkbox[1] totalInput = $100 && disable checkbox[3]
-    checkBoxes[0].addEventListener("click", e => {
-      if (checkBoxes[0].checked) {
-        amount = parseInt(200);
-        getTotal();
-      } else {
-        amount = parseInt(0);
-        getTotal();
-      }
-    });
-    checkBoxes[1].addEventListener("click", e => {
-      disableBoxes(checkBoxes[1], checkBoxes[5], checkBoxes[3]);
-      if (checkBoxes[i].checked > 1) {
-        amount = parseInt(300);
-        getTotal();
-      } else if (checkBoxes[1].checked) {
-        amount = parseInt(100);
-        getTotal();
-      } else {
-        amount = parseInt(0);
-        getTotal();
-      }
-    });
-    checkBoxes[2].addEventListener("click", e =>
-      disableBoxes(checkBoxes[2], checkBoxes[3], checkBoxes[4])
-    );
-    checkBoxes[3].addEventListener("click", e =>
-      disableBoxes(checkBoxes[3], checkBoxes[1], checkBoxes[5])
-    );
-    checkBoxes[4].addEventListener("click", e =>
-      disableBoxes(checkBoxes[4], checkBoxes[2], checkBoxes[6])
-    );
-    checkBoxes[5].addEventListener("click", e =>
-      disableBoxes(checkBoxes[5], checkBoxes[3], checkBoxes[1])
-    );
-    checkBoxes[6].addEventListener("click", e =>
-      disableBoxes(checkBoxes[6], checkBoxes[4], checkBoxes[2])
-    );
-  }
-}
+  for (let i = 0; i < checkBoxes.length; i++) {}
 
+  checkBoxes[2].addEventListener("click", e =>
+    disableBoxes(checkBoxes[2], checkBoxes[3], checkBoxes[4])
+  );
+  checkBoxes[3].addEventListener("click", e =>
+    disableBoxes(checkBoxes[3], checkBoxes[1], checkBoxes[5])
+  );
+  checkBoxes[4].addEventListener("click", e =>
+    disableBoxes(checkBoxes[4], checkBoxes[2], checkBoxes[6])
+  );
+  checkBoxes[5].addEventListener("click", e =>
+    disableBoxes(checkBoxes[5], checkBoxes[3], checkBoxes[1])
+  );
+  checkBoxes[6].addEventListener("click", e =>
+    disableBoxes(checkBoxes[6], checkBoxes[4], checkBoxes[2])
+  );
+}
+// call activity
 activity();
 
 function disableBoxes(first, middle, last) {
