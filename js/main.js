@@ -69,31 +69,22 @@ function showAvailableColors(e) {
 // Function to register for activites
 const activities = document.querySelector(".activities");
 const checkBoxes = document.querySelectorAll("input[type=checkbox]");
+let amount = parseInt(0);
+const total = document.createElement("span");
 
+activities.appendChild(total);
 function getTotal() {
-  const total = document.createElement("span");
-  activities.appendChild(total);
-  const amount ;
-  total.innerHTML = `Total: $${amount}`;
   for (let i = 0; i < checkBoxes.length; i++) {
-    switch (checkBoxes[i].onchange) {
-      case (checkBoxes[1].checked):
-        amount + 100;
-        break;
-    
-      default:
-        break;
-    }
+    total.innerHTML = `Total $${amount}`;
   }
 }
-
-function addTotal() {
-  const total = document.createElement("span");
-  activities.appendChild(total);
-  const amount = getTotal();
-  total.innerHTML = `Total: $${amount}`;
-}
-
+// function addTotal() {
+//   const total = document.createElement("span");
+//   activities.appendChild(total);
+//   const amount = getTotal();
+//   total.innerHTML = `Total: $${amount}`;
+// }
+getTotal();
 function activity() {
   // if user selects checkbox[o] totalInput = $200
   // if user selects checkbox[1] totalInput = $100 && disable checkbox[3]
@@ -107,9 +98,27 @@ function activity() {
     //On load uncheck all boxes
     checkBoxes[i].checked = false;
     // if user selects checkbox[1] totalInput = $100 && disable checkbox[3]
-    checkBoxes[0].addEventListener("click", e => console.log("hello"));
+    checkBoxes[0].addEventListener("click", e => {
+      if (checkBoxes[0].checked) {
+        amount = parseInt(200);
+        getTotal();
+      } else {
+        amount = parseInt(0);
+        getTotal();
+      }
+    });
     checkBoxes[1].addEventListener("click", e => {
       disableBoxes(checkBoxes[1], checkBoxes[5], checkBoxes[3]);
+      if (checkBoxes[i].checked > 1) {
+        amount = parseInt(300);
+        getTotal();
+      } else if (checkBoxes[1].checked) {
+        amount = parseInt(100);
+        getTotal();
+      } else {
+        amount = parseInt(0);
+        getTotal();
+      }
     });
     checkBoxes[2].addEventListener("click", e =>
       disableBoxes(checkBoxes[2], checkBoxes[3], checkBoxes[4])
@@ -141,7 +150,6 @@ function disableBoxes(first, middle, last) {
     last.disabled = true;
     last.parentNode.style.color = "grey";
     last.checked = false;
-    addTotal();
   } else {
     //when its unchecked it makes the input not disabled and the label black
     middle.disabled = false;
