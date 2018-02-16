@@ -82,6 +82,8 @@ function showAvailableColors(e) {
 // Function to register for activites
 const activities = document.querySelector(".activities");
 const checkBoxes = document.querySelectorAll("input[type=checkbox]");
+let printIt = document.createElement("span");
+activities.appendChild(printIt);
 
 function activity() {
   // if user selects checkbox[o] totalInput = $200
@@ -96,24 +98,33 @@ function activity() {
     //On load uncheck all boxes
     checkBoxes[i].checked = false;
     // if user selects checkbox[1] totalInput = $100 && disable checkbox[3]
-    checkBoxes[1].addEventListener("click", e =>
-      disableBoxes(checkBoxes[1], checkBoxes[5], checkBoxes[3])
-    );
-    checkBoxes[2].addEventListener("click", e =>
-      disableBoxes(checkBoxes[2], checkBoxes[3], checkBoxes[4])
-    );
-    checkBoxes[3].addEventListener("click", e =>
-      disableBoxes(checkBoxes[3], checkBoxes[1], checkBoxes[5])
-    );
-    checkBoxes[4].addEventListener("click", e =>
-      disableBoxes(checkBoxes[4], checkBoxes[2], checkBoxes[6])
-    );
-    checkBoxes[5].addEventListener("click", e =>
-      disableBoxes(checkBoxes[5], checkBoxes[3], checkBoxes[1])
-    );
-    checkBoxes[6].addEventListener("click", e =>
-      disableBoxes(checkBoxes[6], checkBoxes[4], checkBoxes[2])
-    );
+    checkBoxes[0].addEventListener("click", e => {
+      // calculateTotal();
+    });
+    checkBoxes[1].addEventListener("click", e => {
+      disableBoxes(checkBoxes[1], checkBoxes[5], checkBoxes[3]);
+      // calculateTotal();
+    });
+    checkBoxes[2].addEventListener("click", e => {
+      disableBoxes(checkBoxes[2], checkBoxes[3], checkBoxes[4]);
+      // calculateTotal();
+    });
+    checkBoxes[3].addEventListener("click", e => {
+      disableBoxes(checkBoxes[3], checkBoxes[1], checkBoxes[5]);
+      // calculateTotal();
+    });
+    checkBoxes[4].addEventListener("click", e => {
+      disableBoxes(checkBoxes[4], checkBoxes[2], checkBoxes[6]);
+      // calculateTotal();
+    });
+    checkBoxes[5].addEventListener("click", e => {
+      disableBoxes(checkBoxes[5], checkBoxes[3], checkBoxes[1]);
+      // calculateTotal();
+    });
+    checkBoxes[6].addEventListener("click", e => {
+      disableBoxes(checkBoxes[6], checkBoxes[4], checkBoxes[2]);
+      // calculateTotal();
+    });
   }
 }
 
@@ -147,17 +158,27 @@ pricesList["node"] = 100;
 pricesList["build-tools"] = 100;
 pricesList["npm"] = 100;
 
-function getActivityPrices() {
+function getActivityPrices(userInput) {
   // selected all checkBoxes
   const activityCheckBoxes = document.querySelectorAll("input[type=checkbox]");
-  console.log(activityCheckBoxes);
+
   // Loop through checkbox list
   for (let i = 0; i < activityCheckBoxes.length; i++) {
     if (activityCheckBoxes[i].checked) {
-      userInput = activityCheckBoxes[i].value;
+      userInput = activityCheckBoxes[i].name;
     }
   }
   return pricesList[userInput];
 }
 
-getActivityPrices();
+function calculateTotal() {
+  let total = getActivityPrices();
+  printIt.innerHTML = `Your Total is $${total}`;
+  printIt.style.display = "block";
+}
+
+function hideTotal() {
+  printIt.innerHTML = `Your Total is $0`;
+  // printIt.style.display = "none";
+}
+activities.onchange = calculateTotal;
