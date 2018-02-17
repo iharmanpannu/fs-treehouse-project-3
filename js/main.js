@@ -43,7 +43,7 @@ function resetOptions() {
   const paymentSelect = document.getElementById("payment");
   designSelectMenu.selectedIndex = 0;
   size.selectedIndex = 0;
-  paymentSelect.selectedIndex = 0;
+  paymentSelect.selectedIndex = 1;
 }
 
 //calling functions
@@ -184,10 +184,16 @@ function showPaymentOption(e) {
     if (e.target.value === "paypal") {
       console.log("Hello Kitty");
       creditCard.style.display = "none";
+      bitcoin.style.display = "none";
       paypal.style.display = "block";
     } else if (e.target.value === "bitcoin") {
       creditCard.style.display = "none";
+      paypal.style.display = "none";
       bitcoin.style.display = "block";
+    } else {
+      creditCard.style.display = "block";
+      paypal.style.display = "none";
+      bitcoin.style.display = "none";
     }
   }
 }
