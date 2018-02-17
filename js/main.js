@@ -213,10 +213,18 @@ function formValidation() {
     const at = "@";
     //if email field is empty show alert box
     if (email.value.indexOf(at) === -1) {
-      alert("Please enter email");
+      alert("Please enter valid email");
+      // console.log("Please enter valid email");
       e.preventDefault();
+      email.focus();
     }
     // must check one of the checkbox
+    for (let i = 0; i < activityCheckBoxes.length; i++) {
+      if (activityCheckBoxes[i].checked < 1) {
+        alert("Please select one activity");
+        e.preventDefault();
+      }
+    }
   });
 }
 formValidation();
