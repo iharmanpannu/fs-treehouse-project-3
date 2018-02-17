@@ -141,10 +141,10 @@ function disableBoxes(first, middle, last) {
 const activityCheckBoxes = document.querySelectorAll("input[type=checkbox]");
 // Get span to print total
 const printTotal = document.getElementById("printTotal");
-
+let total = 0;
 function getActivityPrices(userInput) {
   // selected all checkBoxes
-  let total = 0;
+
   // Loop through checkbox list
   for (let i = 0; i < activityCheckBoxes.length; i++) {
     if (activityCheckBoxes[i].checked) {
@@ -220,10 +220,16 @@ function formValidation() {
     }
     // must check one of the checkbox
     for (let i = 0; i < activityCheckBoxes.length; i++) {
-      if (activityCheckBoxes[i].checked < 1) {
+      const isChecked = activityCheckBoxes[i].checked;
+      if (!isChecked) {
         alert("Please select one activity");
         e.preventDefault();
       }
+    }
+    const cardNumber = document.getElementById("cc-num");
+    if (cardNumber.value === "") {
+      alert("Please enter valid card number");
+      e.preventDefault();
     }
   });
 }
