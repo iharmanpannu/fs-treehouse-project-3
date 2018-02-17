@@ -143,7 +143,7 @@ function getActivityPrices(userInput) {
   // Loop through checkbox list
   for (let i = 0; i < activityCheckBoxes.length; i++) {
     if (activityCheckBoxes[i].checked) {
-      userInput = parseInt(activityCheckBoxes[i].value);
+      let userInput = parseInt(activityCheckBoxes[i].value);
       total = total + userInput;
     }
   }
@@ -156,8 +156,18 @@ function calculateTotal() {
   printTotal.style.display = "block";
 }
 
-for (let i = 0; i < activityCheckBoxes.length; i++) {
-  activityCheckBoxes[i].addEventListener("change", () => {
-    calculateTotal();
-  });
+function showPriceIfChecked() {
+  for (let i = 0; i < activityCheckBoxes.length; i++) {
+    activityCheckBoxes[i].addEventListener("change", () => {
+      calculateTotal();
+    });
+  }
+}
+showPriceIfChecked();
+// Payment Info section of the form
+
+function showPaymentOption() {
+  // if select id="payment" value="credit card" show div id="credit-card"
+  // if select id="paypal" value="credit card" show div id="credit-card"
+  // if select id="payment" value="credit card" show div id="credit-card"
 }
