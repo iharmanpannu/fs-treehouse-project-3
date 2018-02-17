@@ -216,6 +216,7 @@ function formValidation() {
       alert("Please enter email");
       e.preventDefault();
     }
+    // must check one of the checkbox
   });
 }
 formValidation();
