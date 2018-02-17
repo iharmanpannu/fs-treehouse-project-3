@@ -1,5 +1,6 @@
 const form = document.querySelector("form");
 const name = document.querySelector("#name");
+const email = document.querySelector("#mail");
 const JobRoles = document.querySelector("select");
 const firstFieldSet = document.querySelectorAll("fieldset")[0];
 const InputOther = document.querySelector("#other-title");
@@ -9,6 +10,8 @@ const colorOptions = document.querySelectorAll("#color option");
 
 window.addEventListener("load", () => {
   focusNameInput();
+  form.reset();
+  // form.addEventListener("submit", e => e.preventDefault());
 });
 
 // This function adds focus when page loads
@@ -38,17 +41,17 @@ function hideColor() {
   }
 }
 
-function resetOptions() {
-  const size = document.querySelector("#size");
-  const paymentSelect = document.getElementById("payment");
-  designSelectMenu.selectedIndex = 0;
-  size.selectedIndex = 0;
-  paymentSelect.selectedIndex = 1;
-}
+// function resetOptions() {
+//   const size = document.querySelector("#size");
+//   const paymentSelect = document.getElementById("payment");
+//   designSelectMenu.selectedIndex = 0;
+//   size.selectedIndex = 0;
+//   paymentSelect.selectedIndex = 1;
+// }
 
 //calling functions
 hideColor();
-resetOptions();
+// resetOptions();
 designSelectMenu.onchange = showAvailableColors;
 // Show available color on selection function
 function showAvailableColors(e) {
@@ -199,8 +202,20 @@ function showPaymentOption(e) {
 }
 paymentSelect.onchange = showPaymentOption;
 const button = document.querySelector("button");
-button.addEventListener("submit", e => e.preventDefault());
+// button.addEventListener("click", );
 function formValidation() {
   // if name field text is less than 0 or a number dont submit
+  button.addEventListener("click", e => {
+    if (name.value === "" || name.value === null) {
+      alert("Please enter your name");
+      e.preventDefault();
+    }
+    const at = "@";
+    //if email field is empty show alert box
+    if (email.value.indexOf(at) === -1) {
+      alert("Please enter email");
+      e.preventDefault();
+    }
+  });
 }
 formValidation();
