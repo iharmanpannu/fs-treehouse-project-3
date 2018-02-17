@@ -198,3 +198,9 @@ function showPaymentOption(e) {
   }
 }
 paymentSelect.onchange = showPaymentOption;
+const button = document.querySelector("button");
+button.addEventListener("submit", e => e.preventDefault());
+function formValidation() {
+  // if name field text is less than 0 or a number dont submit
+}
+formValidation();
