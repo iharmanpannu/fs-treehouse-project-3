@@ -40,8 +40,10 @@ function hideColor() {
 
 function resetOptions() {
   const size = document.querySelector("#size");
+  const paymentSelect = document.getElementById("payment");
   designSelectMenu.selectedIndex = 0;
   size.selectedIndex = 0;
+  paymentSelect.selectedIndex = 0;
 }
 
 //calling functions
@@ -165,9 +167,28 @@ function showPriceIfChecked() {
 }
 showPriceIfChecked();
 // Payment Info section of the form
-
-function showPaymentOption() {
+const paymentSelect = document.getElementById("payment");
+const paymentOptions = document.querySelectorAll("#payment option");
+const creditCard = document.getElementById("credit-card");
+const paypal = document.getElementById("paypal");
+const bitcoin = document.getElementById("bitcoin");
+paypal.style.display = "none";
+bitcoin.style.display = "none";
+console.log(paymentOptions);
+function showPaymentOption(e) {
   // if select id="payment" value="credit card" show div id="credit-card"
   // if select id="paypal" value="credit card" show div id="credit-card"
   // if select id="payment" value="credit card" show div id="credit-card"
+  // select the option menu by id="payment"
+  for (let i = 0; i < paymentOptions.length; i++) {
+    if (e.target.value === "paypal") {
+      console.log("Hello Kitty");
+      creditCard.style.display = "none";
+      paypal.style.display = "block";
+    } else if (e.target.value === "bitcoin") {
+      creditCard.style.display = "none";
+      bitcoin.style.display = "block";
+    }
+  }
 }
+paymentSelect.onchange = showPaymentOption;
