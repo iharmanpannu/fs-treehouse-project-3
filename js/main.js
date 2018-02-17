@@ -29,19 +29,6 @@ function onOtherJobSelected(e) {
 }
 JobRoles.onchange = onOtherJobSelected;
 
-// function appendSelectOption() {
-//   const selectOption = document.createElement("option");
-//   selectOption.value = "Please Select";
-//   selectOption.text = "Select One Color";
-//   selectOption.setAttribute("disabled", true);
-//   color.insertBefore(selectOption, colorOptions[0]);
-//   reset();
-// }
-
-// function reset() {
-//   color.selectedIndex = 0;
-// }
-
 //change colors as the user selects the menu
 // Hide all the options
 function hideColor() {
@@ -145,30 +132,18 @@ function disableBoxes(first, middle, last) {
   }
 }
 
-let pricesList = {};
-
-pricesList["all"] = 200;
-pricesList["js-frameworks"] = 100;
-pricesList["js-libs"] = 100;
-pricesList["express"] = 100;
-pricesList["node"] = 100;
-pricesList["build-tools"] = 100;
-pricesList["npm"] = 100;
-
-const printTotal = document.getElementById("printTotal");
 // selected all checkBoxes
 const activityCheckBoxes = document.querySelectorAll("input[type=checkbox]");
+// Get span to print total
+const printTotal = document.getElementById("printTotal");
 
 function getActivityPrices(userInput) {
   // selected all checkBoxes
   let total = 0;
   // Loop through checkbox list
   for (let i = 0; i < activityCheckBoxes.length; i++) {
-    for (item in pricesList) {
-      activityCheckBoxes[i].name = pricesList[item];
-    }
     if (activityCheckBoxes[i].checked) {
-      userInput = parseInt(activityCheckBoxes[i].name);
+      userInput = parseInt(activityCheckBoxes[i].value);
       total = total + userInput;
     }
   }
@@ -177,13 +152,12 @@ function getActivityPrices(userInput) {
 
 function calculateTotal() {
   let total = getActivityPrices();
-  console.log(total);
   printTotal.innerHTML = `Your Total is $${total}`;
   printTotal.style.display = "block";
 }
 
-for (var i = 0; i < activityCheckBoxes.length; i++) {
-  activityCheckBoxes[i].addEventListener("change", function() {
+for (let i = 0; i < activityCheckBoxes.length; i++) {
+  activityCheckBoxes[i].addEventListener("change", () => {
     calculateTotal();
   });
 }
