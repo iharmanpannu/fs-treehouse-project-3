@@ -240,10 +240,11 @@ function formValidation() {
     //   }
     // }
     const cardNumber = document.getElementById("cc-num");
+    // const checkCardNumber = /^\d{16}$/;
     if (
       cardNumber.value.length < 13 ||
       cardNumber.value.length > 17 ||
-      creditCard.value.match(/^[0-9]+$/) == null
+      cardNumber.value.match(/^[0-9]+$/) == null
     ) {
       alert("Please enter valid card number");
       e.preventDefault();
