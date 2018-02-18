@@ -180,6 +180,8 @@ const paymentOptions = document.querySelectorAll("#payment option");
 const creditCard = document.getElementById("credit-card");
 const paypal = document.getElementById("paypal");
 const bitcoin = document.getElementById("bitcoin");
+
+creditCard.style.display = "none";
 paypal.style.display = "none";
 bitcoin.style.display = "none";
 
@@ -188,8 +190,13 @@ function showPaymentOption(e) {
   // if select id="paypal" value="credit card" show div id="credit-card"
   // if select id="payment" value="credit card" show div id="credit-card"
   // select the option menu by id="payment"
+
   for (let i = 0; i < paymentOptions.length; i++) {
-    if (e.target.value === "paypal") {
+    if (e.target.value === "credit card") {
+      creditCard.style.display = "block";
+      bitcoin.style.display = "none";
+      paypal.style.display = "none";
+    } else if (e.target.value === "paypal") {
       creditCard.style.display = "none";
       bitcoin.style.display = "none";
       paypal.style.display = "block";
@@ -198,7 +205,7 @@ function showPaymentOption(e) {
       paypal.style.display = "none";
       bitcoin.style.display = "block";
     } else {
-      creditCard.style.display = "block";
+      creditCard.style.display = "none";
       paypal.style.display = "none";
       bitcoin.style.display = "none";
     }
