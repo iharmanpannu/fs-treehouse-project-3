@@ -11,7 +11,7 @@ const colorOptions = document.querySelectorAll("#color option");
 window.addEventListener("load", () => {
   focusNameInput();
   form.reset();
-  form.addEventListener("submit", e => e.preventDefault());
+  // form.addEventListener("submit", e => e.preventDefault());
 });
 
 // This function adds focus when page loads
@@ -40,7 +40,14 @@ function hideColor() {
     colorOptions[i].style.display = "none";
   }
 }
-function showColorMenu() {}
+
+// function resetOptions() {
+//   const size = document.querySelector("#size");
+//   const paymentSelect = document.getElementById("payment");
+//   designSelectMenu.selectedIndex = 0;
+//   size.selectedIndex = 0;
+//   paymentSelect.selectedIndex = 1;
+// }
 
 //calling functions
 hideColor();
@@ -194,7 +201,11 @@ function showPaymentOption(e) {
 }
 paymentSelect.onchange = showPaymentOption;
 const button = document.querySelector("button");
-const errorActivity = document.getElementById("acitivity-error");
+const errorActivity = document.createElement("span");
+const firstActivity = document.getElementById("first-activity");
+errorActivity.innerHTML = "Please select one activity minimum";
+errorActivity.classList = "show-error";
+activities.insertBefore(errorActivity, firstActivity);
 errorActivity.style.display = "none";
 
 // button.addEventListener("click", );
@@ -218,7 +229,7 @@ function formValidation() {
       errorActivity.style.display = "block";
       setTimeout(() => {
         errorActivity.style.display = "none";
-      }, 5000);
+      }, 4000);
       e.preventDefault();
     }
     // for (let i = 0; i < activityCheckBoxes.length; i++) {
