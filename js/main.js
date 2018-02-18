@@ -6,8 +6,9 @@ const firstFieldSet = document.querySelectorAll("fieldset")[0];
 const InputOther = document.querySelector("#other-title");
 const designSelectMenu = document.querySelector("#design");
 const color = document.getElementById("color");
+const colorsDiv = document.getElementById("colors-js-puns");
 const colorOptions = document.querySelectorAll("#color option");
-
+colorsDiv.style.display = "none";
 window.addEventListener("load", () => {
   focusNameInput();
   form.reset();
@@ -35,7 +36,6 @@ JobRoles.onchange = onOtherJobSelected;
 //change colors as the user selects the menu
 // Hide all the options
 function hideColor() {
-  // appendSelectOption();
   for (let i = 0; i < colorOptions.length; i++) {
     colorOptions[i].style.display = "none";
   }
@@ -57,6 +57,7 @@ designSelectMenu.onchange = showAvailableColors;
 function showAvailableColors(e) {
   // if theme js pune selected then show "cornflower blue, Dark slate grey, and gold "
   if (e.target.value === "js puns") {
+    colorsDiv.style.display = "block";
     colorOptions.forEach(
       (color, i) => (color.style.display = i >= 0 && i < 3 ? "block" : "none")
     );
@@ -64,10 +65,13 @@ function showAvailableColors(e) {
 
     // if theme I JS selected show Tomoto, steel blue and dim grey
   } else if (e.target.value === "heart js") {
+    colorsDiv.style.display = "block";
     colorOptions.forEach(
       (color, i) => (color.style.display = i <= 2 ? "none" : "block")
     );
     color.selectedIndex = 3; // Reset the options on change
+  } else {
+    colorsDiv.style.display = "none";
   }
 }
 
