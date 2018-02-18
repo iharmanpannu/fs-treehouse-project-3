@@ -14,7 +14,7 @@ colorsDiv.style.display = "none";
 window.addEventListener("load", () => {
   focusNameInput();
   form.reset();
-  // form.addEventListener("submit", e => e.preventDefault());
+  form.addEventListener("submit", e => e.preventDefault());
 });
 
 // This function adds focus when page loads
@@ -80,6 +80,7 @@ function showAvailableColors(e) {
 // Function to register for activites
 const activities = document.querySelector(".activities");
 const checkBoxes = document.querySelectorAll("input[type=checkbox]");
+let total = 0;
 
 function activity() {
   // if user selects checkbox[o] totalInput = $200
@@ -147,11 +148,10 @@ function disableBoxes(first, middle, last) {
 const activityCheckBoxes = document.querySelectorAll("input[type=checkbox]");
 // Get span to print total
 const printTotal = document.getElementById("printTotal");
-let total = 0;
 
 function getActivityPrices(userInput) {
   // selected all checkBoxes
-  let total = 0;
+
   // Loop through checkbox list
   for (let i = 0; i < activityCheckBoxes.length; i++) {
     if (activityCheckBoxes[i].checked) {
