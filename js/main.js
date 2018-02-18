@@ -1,3 +1,5 @@
+// Form interactivity
+
 const form = document.querySelector("form");
 const name = document.querySelector("#name");
 const email = document.querySelector("#mail");
@@ -11,6 +13,8 @@ const colorOptions = document.querySelectorAll("#color option");
 const noDesignSelected = document.querySelectorAll("#design option")[0];
 const noPaymentOptionSelected = document.querySelectorAll("#payment option")[0];
 colorsDiv.style.display = "none";
+
+// When window loads focus on name element, reset the form and prevent form from submiting
 window.addEventListener("load", () => {
   focusNameInput();
   form.reset();
@@ -255,7 +259,7 @@ function formValidation() {
     }
     const at = "@";
     //if email field is empty show alert box
-    if (email.value.indexOf(at) === -1) {
+    if (!email.value.includes(at)) {
       email.classList.add("input-field");
       e.preventDefault();
       email.addEventListener("keypress", e =>
