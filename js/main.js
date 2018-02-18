@@ -239,14 +239,25 @@ function formValidation() {
     //     e.preventDefault();
     //   }
     // }
+    // credit card area variables
     const cardNumber = document.getElementById("cc-num");
-    // const checkCardNumber = /^\d{16}$/;
+    const zipCode = document.getElementById("zip");
+    const cvv = document.getElementById("cvv");
+    // Credit card validation condtions below
     if (
       cardNumber.value.length < 13 ||
       cardNumber.value.length > 17 ||
       cardNumber.value.match(/^[0-9]+$/) == null
     ) {
       alert("Please enter valid card number");
+      e.preventDefault();
+    }
+    if (zipCode.value.length < 5 || zipCode.value.match(/^[0-9]+$/) == null) {
+      alert("Please enter valid zip number");
+      e.preventDefault();
+    }
+    if (cvv.value.length < 3 || cvv.value.match(/^[0-9]+$/) == null) {
+      alert("Please enter valid cvv number");
       e.preventDefault();
     }
   });
