@@ -11,7 +11,7 @@ const colorOptions = document.querySelectorAll("#color option");
 window.addEventListener("load", () => {
   focusNameInput();
   form.reset();
-  // form.addEventListener("submit", e => e.preventDefault());
+  form.addEventListener("submit", e => e.preventDefault());
 });
 
 // This function adds focus when page loads
@@ -221,7 +221,7 @@ function formValidation() {
     const at = "@";
     //if email field is empty show alert box
     if (email.value.indexOf(at) === -1) {
-      alert("Please enter valid email");
+      // alert("Please enter valid email");
       // console.log("Please enter valid email");
       e.preventDefault();
     }
