@@ -213,10 +213,8 @@ function formValidation() {
   // if name field text is less than 0 or a number dont submit
   button.addEventListener("click", e => {
     if (name.value === "" || name.value === null) {
-      // name.style.borderColor = "tomato";
       name.classList.add("input-field");
       e.preventDefault();
-
       name.addEventListener("keypress", e =>
         name.classList.remove("input-field")
       );
@@ -224,11 +222,10 @@ function formValidation() {
     const at = "@";
     //if email field is empty show alert box
     if (email.value.indexOf(at) === -1) {
-      email.style.borderColor = "tomato";
+      email.classList.add("input-field");
       e.preventDefault();
-      email.addEventListener(
-        "keypress",
-        e => (email.style.borderColor = "transparent")
+      email.addEventListener("keypress", e =>
+        email.classList.remove("input-field")
       );
     }
 
@@ -250,29 +247,24 @@ function formValidation() {
       cardNumber.value.length > 17 ||
       cardNumber.value.match(/^[0-9]+$/) == null
     ) {
-      cardNumber.style.borderColor = "tomato";
-      cardNumber.innerHTML = "Please enter valid card number";
+      cardNumber.classList.add("input-field");
       e.preventDefault();
-
-      cardNumber.addEventListener(
-        "keypress",
-        e => (cardNumber.style.borderColor = "transparent")
+      cardNumber.addEventListener("keypress", e =>
+        cardNumber.classList.remove("input-field")
       );
     }
     if (zipCode.value.length < 5 || zipCode.value.match(/^[0-9]+$/) == null) {
-      zipCode.style.borderColor = "tomato";
+      zipCode.classList.add("input-field");
       e.preventDefault();
-      zipCode.addEventListener(
-        "keypress",
-        e => (zipCode.style.borderColor = "transparent")
+      zipCode.addEventListener("keypress", e =>
+        zipCode.classList.remove("input-field")
       );
     }
     if (cvv.value.length < 3 || cvv.value.match(/^[0-9]+$/) == null) {
-      cvv.style.borderColor = "tomato";
+      cvv.classList.add("input-field");
       e.preventDefault();
-      cvv.addEventListener(
-        "keypress",
-        e => (cvv.style.borderColor = "transparent")
+      cvv.addEventListener("keypress", e =>
+        cvv.classList.remove("input-field")
       );
     }
   });
