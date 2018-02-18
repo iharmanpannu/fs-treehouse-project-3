@@ -213,12 +213,12 @@ function formValidation() {
   // if name field text is less than 0 or a number dont submit
   button.addEventListener("click", e => {
     if (name.value === "" || name.value === null) {
-      // name.style.borderColor = "tomato";
-      name.classList.add("input-field");
-      e.preventDefault();
+      name.style.borderColor = "tomato";
 
-      name.addEventListener("keypress", e =>
-        name.classList.remove("input-field")
+      e.preventDefault();
+      name.addEventListener(
+        "keypress",
+        e => (name.style.borderColor = "transparent")
       );
     }
     const at = "@";

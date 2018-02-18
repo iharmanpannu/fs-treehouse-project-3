@@ -192,3 +192,14 @@ button:hover {
   border-radius: 5px;
   padding: 0.5em;
 }
+
+.input-field {
+  background: #f54963;
+  border: 2px solid #faf7f7;
+  transition: all 300ms linear;
+}
+.input-field:focus {
+  background: #f54963;
+  border: 2px solid #faf7f7;
+  transition: all 300ms linear;
+}
