@@ -11,7 +11,7 @@ const colorOptions = document.querySelectorAll("#color option");
 window.addEventListener("load", () => {
   focusNameInput();
   form.reset();
-  // form.addEventListener("submit", e => e.preventDefault());
+  form.addEventListener("submit", e => e.preventDefault());
 });
 
 // This function adds focus when page loads
@@ -40,14 +40,7 @@ function hideColor() {
     colorOptions[i].style.display = "none";
   }
 }
-
-// function resetOptions() {
-//   const size = document.querySelector("#size");
-//   const paymentSelect = document.getElementById("payment");
-//   designSelectMenu.selectedIndex = 0;
-//   size.selectedIndex = 0;
-//   paymentSelect.selectedIndex = 1;
-// }
+function showColorMenu() {}
 
 //calling functions
 hideColor();
