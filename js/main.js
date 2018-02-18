@@ -11,7 +11,7 @@ const colorOptions = document.querySelectorAll("#color option");
 window.addEventListener("load", () => {
   focusNameInput();
   form.reset();
-  form.addEventListener("submit", e => e.preventDefault());
+  form.addEventListener("click", e => e.preventDefault());
 });
 
 // This function adds focus when page loads
@@ -213,37 +213,32 @@ function formValidation() {
   // if name field text is less than 0 or a number dont submit
   button.addEventListener("click", e => {
     if (name.value === "" || name.value === null) {
-      // alert("Please enter your name");
       name.style.borderColor = "tomato";
       e.preventDefault();
-      name.focus();
+      name.addEventListener(
+        "keypress",
+        e => (name.style.borderColor = "transparent")
+      );
     }
     const at = "@";
     //if email field is empty show alert box
     if (email.value.indexOf(at) === -1) {
-      // alert("Please enter valid email");
-      // console.log("Please enter valid email");
+      email.style.borderColor = "tomato";
       e.preventDefault();
+      email.addEventListener(
+        "keypress",
+        e => (email.style.borderColor = "transparent")
+      );
     }
     // must check one of the checkbox
     if (total === 0) {
       errorActivity.style.display = "block";
       setTimeout(() => {
         errorActivity.style.display = "none";
-      }, 4000);
+      }, 6000);
       e.preventDefault();
     }
-    // for (let i = 0; i < activityCheckBoxes.length; i++) {
-    //   const isChecked = activityCheckBoxes[i].checked;
 
-    //   if (!isChecked) {
-    //     errorActivity.style.display = "block";
-    //     setTimeout(() => {
-    //       errorActivity.style.display = "none";
-    //     }, 5000);
-    //     e.preventDefault();
-    //   }
-    // }
     // credit card area variables
     const cardNumber = document.getElementById("cc-num");
     const zipCode = document.getElementById("zip");
@@ -254,16 +249,30 @@ function formValidation() {
       cardNumber.value.length > 17 ||
       cardNumber.value.match(/^[0-9]+$/) == null
     ) {
-      alert("Please enter valid card number");
+      cardNumber.style.borderColor = "tomato";
+      cardNumber.innerHTML = "Please enter valid card number";
       e.preventDefault();
+
+      cardNumber.addEventListener(
+        "keypress",
+        e => (cardNumber.style.borderColor = "transparent")
+      );
     }
     if (zipCode.value.length < 5 || zipCode.value.match(/^[0-9]+$/) == null) {
-      alert("Please enter valid zip number");
+      zipCode.style.borderColor = "tomato";
       e.preventDefault();
+      zipCode.addEventListener(
+        "keypress",
+        e => (zipCode.style.borderColor = "transparent")
+      );
     }
     if (cvv.value.length < 3 || cvv.value.match(/^[0-9]+$/) == null) {
-      alert("Please enter valid cvv number");
+      cvv.style.borderColor = "tomato";
       e.preventDefault();
+      cvv.addEventListener(
+        "keypress",
+        e => (cvv.style.borderColor = "transparent")
+      );
     }
   });
 }

@@ -183,7 +183,7 @@ button:hover {
 /* my styles */
 
 .show-error {
-  transition: all 0.4s linear;
+  transition: all 2s linear;
   width: 100%;
   text-align: center;
   background: #f89156;
