@@ -213,8 +213,10 @@ function formValidation() {
   // if name field text is less than 0 or a number dont submit
   button.addEventListener("click", e => {
     if (name.value === "" || name.value === null) {
-      alert("Please enter your name");
+      // alert("Please enter your name");
+      name.style.borderColor = "tomato";
       e.preventDefault();
+      name.focus();
     }
     const at = "@";
     //if email field is empty show alert box
@@ -222,7 +224,6 @@ function formValidation() {
       alert("Please enter valid email");
       // console.log("Please enter valid email");
       e.preventDefault();
-      email.focus();
     }
     // must check one of the checkbox
     if (total === 0) {
