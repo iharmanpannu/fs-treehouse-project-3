@@ -8,6 +8,8 @@ const designSelectMenu = document.querySelector("#design");
 const color = document.getElementById("color");
 const colorsDiv = document.getElementById("colors-js-puns");
 const colorOptions = document.querySelectorAll("#color option");
+const noDesignSelected = document.querySelectorAll("#design option")[0];
+const noPaymentOptionSelected = document.querySelectorAll("#payment option")[0];
 colorsDiv.style.display = "none";
 window.addEventListener("load", () => {
   focusNameInput();
@@ -180,7 +182,7 @@ const paymentOptions = document.querySelectorAll("#payment option");
 const creditCard = document.getElementById("credit-card");
 const paypal = document.getElementById("paypal");
 const bitcoin = document.getElementById("bitcoin");
-
+paymentSelect.selectedIndex = 1;
 creditCard.style.display = "none";
 paypal.style.display = "none";
 bitcoin.style.display = "none";
@@ -213,6 +215,17 @@ function showPaymentOption(e) {
 }
 paymentSelect.onchange = showPaymentOption;
 const button = document.querySelector("button");
+
+// t-shirt error alert box
+const shirt = document.querySelector(".shirt");
+const errorTshirt = document.createElement("span");
+const tshirtDiv = document.getElementById("tshirt-div");
+errorTshirt.innerHTML = "Please select one T-shirt Design";
+errorTshirt.classList = "show-error";
+shirt.insertBefore(errorTshirt, tshirtDiv);
+errorTshirt.style.display = "none";
+
+// Activity error alert box
 const errorActivity = document.createElement("span");
 const firstActivity = document.getElementById("first-activity");
 errorActivity.innerHTML = "Please select one activity";
@@ -220,6 +233,16 @@ errorActivity.classList = "show-error";
 activities.insertBefore(errorActivity, firstActivity);
 errorActivity.style.display = "none";
 
+// Payment error alert box
+const payments = document.getElementById("payments-div");
+// const paymentDiv = document.querySelectorAll("#payment-div label")[0];
+const errorPayment = document.createElement("span");
+errorPayment.innerHTML = "Select one payment method";
+errorPayment.classList = "show-error";
+form.insertBefore(errorPayment, payments);
+errorPayment.style.display = "none";
+
+// Validation form function below
 function formValidation() {
   // if name field text is less than 0 or a number dont submit
   button.addEventListener("click", e => {
@@ -239,13 +262,21 @@ function formValidation() {
         email.classList.remove("input-field")
       );
     }
+    // T-shirt selection
 
+    if (noDesignSelected.selected) {
+      errorTshirt.style.display = "block";
+      e.preventDefault();
+      setTimeout(() => {
+        errorTshirt.style.display = "none";
+      }, 10000);
+    }
     // must check one of the checkbox
     if (total === 0) {
       errorActivity.style.display = "block";
       setTimeout(() => {
         errorActivity.style.display = "none";
-      }, 6000);
+      }, 10000);
       e.preventDefault();
     }
     // credit card area variables
@@ -253,6 +284,13 @@ function formValidation() {
     const zipCode = document.getElementById("zip");
     const cvv = document.getElementById("cvv");
     // Credit card validation condtions below
+    if (noPaymentOptionSelected.selected) {
+      errorPayment.style.display = "block";
+      e.preventDefault();
+      setTimeout(() => {
+        errorPayment.style.display = "none";
+      }, 10000);
+    }
     if (
       cardNumber.value.length < 13 ||
       cardNumber.value.length > 17 ||
