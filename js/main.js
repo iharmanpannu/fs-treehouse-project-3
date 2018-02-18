@@ -185,7 +185,6 @@ function showPaymentOption(e) {
   // select the option menu by id="payment"
   for (let i = 0; i < paymentOptions.length; i++) {
     if (e.target.value === "paypal") {
-      console.log("Hello Kitty");
       creditCard.style.display = "none";
       bitcoin.style.display = "none";
       paypal.style.display = "block";
@@ -202,6 +201,9 @@ function showPaymentOption(e) {
 }
 paymentSelect.onchange = showPaymentOption;
 const button = document.querySelector("button");
+const errorActivity = document.getElementById("acitivity-error");
+errorActivity.style.display = "none";
+
 // button.addEventListener("click", );
 function formValidation() {
   // if name field text is less than 0 or a number dont submit
@@ -219,13 +221,24 @@ function formValidation() {
       email.focus();
     }
     // must check one of the checkbox
-    for (let i = 0; i < activityCheckBoxes.length; i++) {
-      const isChecked = activityCheckBoxes[i].checked;
-      if (!isChecked) {
-        alert("Please select one activity");
-        e.preventDefault();
-      }
+    if (total === 0) {
+      errorActivity.style.display = "block";
+      setTimeout(() => {
+        errorActivity.style.display = "none";
+      }, 5000);
+      e.preventDefault();
     }
+    // for (let i = 0; i < activityCheckBoxes.length; i++) {
+    //   const isChecked = activityCheckBoxes[i].checked;
+
+    //   if (!isChecked) {
+    //     errorActivity.style.display = "block";
+    //     setTimeout(() => {
+    //       errorActivity.style.display = "none";
+    //     }, 5000);
+    //     e.preventDefault();
+    //   }
+    // }
     const cardNumber = document.getElementById("cc-num");
     if (cardNumber.value === "") {
       alert("Please enter valid card number");
