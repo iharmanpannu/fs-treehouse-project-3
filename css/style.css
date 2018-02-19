@@ -187,7 +187,7 @@ button:hover {
   transition: all 2s linear;
   width: 100%;
   text-align: center;
-  background: #e73029;
+  background: #f89156;
   color: #fff;
   margin: 1em 0;
   border-radius: 5px;
@@ -195,17 +195,16 @@ button:hover {
 }
 
 .input-field {
-  background: #e73d37;
-  /* border: 2px solid #faf7f7; */
+  background: #f89156;
   color: #fff;
   transition: all 400ms linear;
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.651);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.651);
   border: none;
 }
 .input-field:focus {
-  background: #e73d37;
+  background: #f89156;
 
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.651);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.651);
   border: none;
   transition: all 400ms linear;
 }

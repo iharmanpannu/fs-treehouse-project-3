@@ -14,7 +14,7 @@ const noDesignSelected = document.querySelectorAll("#design option")[0];
 const noPaymentOptionSelected = document.querySelectorAll("#payment option")[0];
 colorsDiv.style.display = "none";
 
-// When window loads focus on name element, reset the form and prevent form from submiting
+// When window loads focus on name reset the form and prevent form from submiting
 window.addEventListener("load", () => {
   focusNameInput();
   form.reset();
@@ -47,17 +47,9 @@ function hideColor() {
   }
 }
 
-// function resetOptions() {
-//   const size = document.querySelector("#size");
-//   const paymentSelect = document.getElementById("payment");
-//   designSelectMenu.selectedIndex = 0;
-//   size.selectedIndex = 0;
-//   paymentSelect.selectedIndex = 1;
-// }
-
 //calling functions
 hideColor();
-// resetOptions();
+
 designSelectMenu.onchange = showAvailableColors;
 // Show available color on selection function
 function showAvailableColors(e) {
@@ -84,7 +76,6 @@ function showAvailableColors(e) {
 // Function to register for activites
 const activities = document.querySelector(".activities");
 const checkBoxes = document.querySelectorAll("input[type=checkbox]");
-let total = 0;
 
 function activity() {
   // if user selects checkbox[o] totalInput = $200
@@ -98,31 +89,24 @@ function activity() {
   for (let i = 0; i < checkBoxes.length; i++) {
     //On load uncheck all boxes
     checkBoxes[i].checked = false;
-    // if user selects checkbox[1] totalInput = $100 && disable checkbox[3]
-    // checkBoxes[0].addEventListener("click", e => {});
+    // event listeners
     checkBoxes[1].addEventListener("click", e => {
       disableBoxes(checkBoxes[1], checkBoxes[5], checkBoxes[3]);
-      // calculateTotal();
     });
     checkBoxes[2].addEventListener("click", e => {
       disableBoxes(checkBoxes[2], checkBoxes[3], checkBoxes[4]);
-      // calculateTotal();
     });
     checkBoxes[3].addEventListener("click", e => {
       disableBoxes(checkBoxes[3], checkBoxes[1], checkBoxes[5]);
-      // calculateTotal();
     });
     checkBoxes[4].addEventListener("click", e => {
       disableBoxes(checkBoxes[4], checkBoxes[2], checkBoxes[6]);
-      // calculateTotal();
     });
     checkBoxes[5].addEventListener("click", e => {
       disableBoxes(checkBoxes[5], checkBoxes[3], checkBoxes[1]);
-      // calculateTotal();
     });
     checkBoxes[6].addEventListener("click", e => {
       disableBoxes(checkBoxes[6], checkBoxes[4], checkBoxes[2]);
-      // calculateTotal();
     });
   }
 }
@@ -155,7 +139,7 @@ const printTotal = document.getElementById("printTotal");
 
 function getActivityPrices(userInput) {
   // selected all checkBoxes
-
+  let total = 0;
   // Loop through checkbox list
   for (let i = 0; i < activityCheckBoxes.length; i++) {
     if (activityCheckBoxes[i].checked) {
@@ -276,13 +260,16 @@ function formValidation() {
       }, 10000);
     }
     // must check one of the checkbox
-    if (total === 0) {
+    const activityChecked = document.querySelectorAll(".activities :checked")
+      .length;
+    if (!activityChecked) {
       errorActivity.style.display = "block";
       setTimeout(() => {
         errorActivity.style.display = "none";
       }, 10000);
       e.preventDefault();
     }
+
     // credit card area variables
     const cardNumber = document.getElementById("cc-num");
     const zipCode = document.getElementById("zip");
